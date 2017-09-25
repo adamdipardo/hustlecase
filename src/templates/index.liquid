@@ -8,15 +8,14 @@
 				
 				<div class="button-group">
 					<a href="#product" class="btn btn-primary">Shop Now</a>
-					<a href="#about" class="btn btn-link">Learn More <i class="fa fa-angle-down"></i></a>
+					<a href="" class="btn btn-link" id="video-trigger">Watch Video <i class="fa fa-angle-down"></i></a>
 				</div>
 
 				<div class="happy-customers">
 					<p>Happy customers from companies like</p>
-					<img src="{{ 'Google.svg' | asset_url }}" alt="Google" title="Google" />
-					<img src="{{ 'Facebook.svg' | asset_url }}" alt="Facebook" title="Facebook" style="position: relative; top: -2px;" />
-					<img src="{{ 'Apple.svg' | asset_url }}" alt="Apple" title="Apple" />
-					<img src="{{ 'Deloitte.svg' | asset_url }}" alt="Deloitte" title="Deloitte" />
+					<img src="{{ 'airbnb.svg' | asset_url }}" alt="Airbnb" />
+					<img src="{{ 'ibm.svg' | asset_url }}" alt="IBM" />
+					<img src="{{ 'deloitte.svg' | asset_url }}" alt="Deloitte" />
 				</div>
 			</div>
 		</div>
@@ -37,7 +36,7 @@
 					<li>Snap on and off easily</li>
 					<li>Protect from scrapes and scratches</li>
 					<li>Write smoothly and erase quickly</li>
-					<li>Gift that special hustler in your life</li>
+					<li>Gift the special hustler in your life</li>
 				</ul>
 			</div>
 		</div>
@@ -92,7 +91,7 @@
 			<div class="box">
 				<h3>HustleCase makes new ideas better.</h3>
 
-				<blockquote>&ldquo;I found it the <span>best way to get my ideas down</span> and back to making it happen. Office and coffee shop friendly!&rdquo;</blockquote>
+				<blockquote>&ldquo;I found it easy to capture my ideas and sketch visuals to share with my clients on the go&rdquo;</blockquote>
 
 				<p><span>Aloke Pillai</span><br />UX Designer</p>
 			</div>
@@ -106,7 +105,7 @@
 			<div class="box">
 				<h3>A sketch is worth 1000 conversations.</h3>
 
-				<blockquote>&ldquo;I save a lot more time when explaining things. <span>Very handy to visually communicate</span> to my students.&rdquo;</blockquote>
+				<blockquote>&ldquo;I save a lot of time when explaining things, It's very hand to visually communicate with my students&rdquo;</blockquote>
 
 				<p><span>Ann-Marie Sebastian</span><br />Lead Instructor, Sheridan College</p>
 			</div>
@@ -231,7 +230,7 @@
 					<div class="image" style="background-image: url({{ 'collab.png' | asset_url }});"></div>
 					<div class="body">
 						<h3>Follow our stories 📸</h3>
-						<p>All of our special moments are caught on camera on Instagram.</p>
+						<p>All of our special moments are caught on camera through Instagram.</p>
 						<div class="button-container"><a href="https://www.instagram.com/hustlecase/" class="btn btn-light">Follow us</a></div>
 					</div>
 				</div>
@@ -241,7 +240,7 @@
 					<div class="image" style="background-image: url({{ 'google.png' | asset_url }});"></div>
 					<div class="body">
 						<h3>Custom HustleCases ✍️</h3>
-						<p>Larger orders qualify for custom branding your logo to give as gifts and marketing.</p>
+						<p>Larger orders qualify for custom branding which make for creative gifts and brand marketing.</p>
 						<div class="button-container"><a href="mailto:hello@hustlecase.com" class="btn btn-light">Email us</a></div>
 					</div>
 				</div>
@@ -254,6 +253,8 @@
 		<div class="row">
 			<div class="col-md-6">
 				<h3>Stay in the loop</h3>
+
+				<p>Enter your email for featured stories and tools</p>
 				
 				<form class="form-inline">
 					<div class="form-group">
@@ -273,40 +274,3 @@
 		</div>
 	</div>
 </section>
-
-<script src="{{ 'siema.min.js' | asset_url }}"></script>
-<script>
-	var siema = new Siema({
-		onChange: slideChanged
-	});
-	var controls = document.querySelectorAll('ul.siema-controls li');
-	controls.forEach(function(control) {
-		control.addEventListener('click', (e) => {
-			var index = 0;
-			child = e.target;
-			while ( ( child = child.previousElementSibling ) != null && index < 10 )
-				index++;
-			siema.goTo(index);
-			document.querySelector('ul.siema-controls li.active').classList.remove("active");
-			e.target.classList.add("active");			
-		});
-	});
-	function slideChanged() {
-		document.querySelector('ul.siema-controls li.active').classList.remove("active");
-		document.querySelector('ul.siema-controls li:nth-child('+(siema.currentSlide+1)+')').classList.add("active");
-	}
-
-	// navigation
-	window.addEventListener('DOMContentLoaded', function() {		
-		$('body').on('click', 'a[href^="#"]', function(e){
-			e.preventDefault();
-			var target = this.hash;
-
-			$('html, body').stop().animate({
-				'scrollTop': $(target).offset().top
-			}, 600, 'swing', function() {
-				window.location.hash = target;
-			});
-		});
-	});
-</script>

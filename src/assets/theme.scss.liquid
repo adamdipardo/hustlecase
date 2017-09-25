@@ -5552,6 +5552,7 @@ $toolbar-height-small: 46px;
 /*================ GLOBAL ================*/
 $mediumMax: 991px;
 $smallMax: 767px;
+$extraLargeMin: 1200px;
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
@@ -5724,10 +5725,19 @@ section.home {
     bottom: 0;
     right: 0;
     overflow: hidden;
+    padding-left: 0;
+    padding-right: 0;
 
     @media all and (max-width: $mediumMax) {
       position: static;
       min-height: 400px;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 10;
     }
 
     div.siema {
@@ -5920,6 +5930,8 @@ section.buy {
 
     span {
       font-size: 16px;
+      display: inline-block;
+      padding: 0 0 0 5px;
     }
   }
 
@@ -6063,7 +6075,7 @@ section.cards {
       background-color: white;
       text-align: center;
       padding-bottom: 86px;
-      min-height: 276px;
+      min-height: 307px;
 
       @media all and (min-width: $smallMax + 1) and (max-width: $mediumMax) {
         min-height: 440px;
@@ -6159,4 +6171,64 @@ section.footer {
       text-align: center;
     }
   }
+}
+
+/*================ MODAL ================*/
+body.modal-open {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#video-modal.modal {
+    display: none;
+    background: rgba(0, 0, 0, .30);
+    z-index: 999;
+    padding: 30px 0;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+
+    .modal-content {
+      border: none;
+      border-radius: 0;
+      text-align: right;
+      color: white;
+      background-color: transparent;
+      display: block;
+
+      a#close-modal {
+        color: white;
+      }
+    }
+}
+
+#video-modal.modal .modal-dialog {
+    position: relative;
+    margin: 30px auto;
+    width: 1100px;
+    // border-radius: 6px;
+    // -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    // box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+
+    background: transparent;
+    margin: 0 auto;
+
+    @media all and (min-width: $extraLargeMin) {
+      max-width: 800px;
+    }
+}
+
+#video-modal video {
+  height: 100%;
+  width: 100%;
 }

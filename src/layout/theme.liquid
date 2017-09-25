@@ -108,5 +108,74 @@
 {% include 'spurit_uev-theme-snippet' %}
 <!-- /spurit_uev-added -->
 
+<div id="video-modal" class="modal">
+  <div class="modal-dialog">
+      <div class="modal-content">
+      <a href="" id="close-modal"><i class="fa fa-close"></i></a>
+      <video src="{{ 'Demo.mp4' | asset_url }}" id="demo-video" loop></video>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'siema.min.js' | asset_url }}"></script>
+<script src="{{ 'rmodal.min.js' | asset_url }}"></script>
+<script>
+  var siema = new Siema({
+    onChange: slideChanged
+  });
+  var controls = document.querySelectorAll('ul.siema-controls li');
+  controls.forEach(function(control) {
+    control.addEventListener('click', (e) => {
+      var index = 0;
+      child = e.target;
+      while ( ( child = child.previousElementSibling ) != null && index < 10 )
+        index++;
+      siema.goTo(index);
+      document.querySelector('ul.siema-controls li.active').classList.remove("active");
+      e.target.classList.add("active");     
+    });
+  });
+  function slideChanged() {
+    document.querySelector('ul.siema-controls li.active').classList.remove("active");
+    document.querySelector('ul.siema-controls li:nth-child('+(siema.currentSlide+1)+')').classList.add("active");
+  }
+
+  // navigation
+  window.addEventListener('DOMContentLoaded', function() {    
+    $('body').on('click', 'a[href^="#"]', function(e){
+      e.preventDefault();
+      var target = this.hash;
+
+      $('html, body').stop().animate({
+        'scrollTop': $(target).offset().top
+      }, 600, 'swing', function() {
+        window.location.hash = target;
+      });
+    });
+  });
+
+  // video
+  var modal = new RModal(document.getElementById('video-modal'), {closeTimeout: 0, focus: false});
+  document.querySelector('#video-trigger').addEventListener('click', function(e) {
+    e.preventDefault();
+    modal.open();
+    document.getElementById('demo-video').currentTime = 0;
+    document.getElementById('demo-video').play();
+  }, false);
+
+  document.querySelector('#video-modal').addEventListener('click', function(e) {
+    if (e.target.id != "video-modal")
+      return;
+
+    document.getElementById('demo-video').pause();
+    modal.close();
+  });
+
+  document.querySelector('#close-modal').addEventListener('click', function(e) {
+    document.getElementById('demo-video').pause();
+    modal.close();
+  });
+</script>
+
 </body>
 </html>
