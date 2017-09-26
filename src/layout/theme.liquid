@@ -172,6 +172,7 @@
   });
 
   document.querySelector('#close-modal').addEventListener('click', function(e) {
+    e.preventDefault();
     document.getElementById('demo-video').pause();
     modal.close();
   });

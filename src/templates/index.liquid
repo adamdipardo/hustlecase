@@ -8,7 +8,7 @@
 				
 				<div class="button-group">
 					<a href="#product" class="btn btn-primary">Shop Now</a>
-					<a href="" class="btn btn-link" id="video-trigger">Watch Video <i class="fa fa-angle-down"></i></a>
+					<a href="" class="btn btn-link" id="video-trigger">Watch Demo (14 secs) <i class="fa fa-angle-down"></i></a>
 				</div>
 
 				<div class="happy-customers">
@@ -256,14 +256,21 @@
 
 				<p>Enter your email for featured stories and tools</p>
 				
-				<form class="form-inline">
-					<div class="form-group">
-						<input type="email" placeholder="Email address" name="email" id="email" class="form-control" />
+				{% form 'customer' %}
+					<div class="form-inline">						
+						<input type="hidden" name="contact[tags]" value="newsletter">
+						<div class="form-group">
+							<input type="email" placeholder="Email address" name="contact[email]" id="email" class="form-control" />
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Subscribe</button>
+						</div>
+						{{ form.errors | default_errors }}
+						{% if form.posted_successfully? %}
+							<p class="newsletter-success">{{ 'general.newsletter_form.confirmation' | t }}</p>
+						{% endif %}
 					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Subscribe</button>
-					</div>
-				</form>				
+				{% endform %}
 			</div>
 			<div class="col-md-6 contact">
 				<h3>Say 👋 at <a href="mailto:hello@hustlecase.com">hello@hustlecase.com</a></h3>
